@@ -61,18 +61,17 @@
             $.ajax({
                 method: 'GET',
                 url: query,
-                }).done(function(data) {
-                console.log(data);
-                // Code from the next step will go here
-            }); 
-        });
-        map.addSource('tilequery', { // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
-  type: "geojson",
-  data: {
-    "type": "FeatureCollection",
-    "features": []
-  }
-});
+                }).done(function(data) { // Use the response to populate the 'tilequery' source
+                    map.getSource('tilequery').setData(data);
+                })
+            });
+            map.addSource('tilequery', { // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
+              type: "geojson",
+              data: {
+                "type": "FeatureCollection",
+                "features": []
+              }
+                });
 
         map.addLayer({ // Add a new layer to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addlayer
           id: "tilequery-points",
