@@ -14,17 +14,17 @@
     body {
       margin: 0;
       padding: 0;
-    }
+  }
 
-    #map {
+  #map {
       position: absolute;
       top: 0;
       bottom: 0;
       width: 100%;
-    }
-  </style>
-  <!-- Import Mapbox Geocoder -->
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.1.2/mapbox-gl-geocoder.min.js'></script>
+  }
+</style>
+<!-- Import Mapbox Geocoder -->
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.1.2/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.1.2/mapbox-gl-geocoder.css' type='text/css' />
 </head>
 
@@ -39,7 +39,7 @@
         style: 'mapbox://styles/mapbox/light-v10', // The map style to use
         center: [-105.0178157, 39.737925], // Starting position [lng, lat]
         zoom: 12 // Starting zoom level
-        });
+    });
     map.on('load', function() {
         var geocoder = new MapboxGeocoder({ // Initialize the geocoder
             accessToken: mapboxgl.accessToken, // Set the access token
@@ -47,7 +47,7 @@
             zoom: 13, // Set the zoom level for geocoding results
             placeholder: "Enter an address or place name", // This placeholder text will display in the search bar
             bbox: [-105.116, 39.679, -104.898, 39.837] // Set a bounding box
-            });
+        });
         // Add the geocoder to the map
         map.addControl(geocoder, 'top-left'); // Add the search box to the top left
         var marker = new mapboxgl.Marker({'color': '#008000'}) // Create a new green marker
@@ -62,17 +62,16 @@
                 method: 'GET',
                 url: query,
                 }).done(function(data) { // Use the response to populate the 'tilequery' source
-                    map.getSource('tilequery').setData(data);
-                })
+                map.getSource('tilequery').setData(data);
+            })
             });
             map.addSource('tilequery', { // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
               type: "geojson",
               data: {
                 "type": "FeatureCollection",
                 "features": []
-              }
-                });
-
+            }
+        });
         map.addLayer({ // Add a new layer to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addlayer
           id: "tilequery-points",
           type: "circle",
@@ -81,18 +80,18 @@
             "circle-stroke-color": "white",
             "circle-stroke-width": { // Set the stroke width of each circle: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-stroke-width
               stops: [
-                [0, 0.1],
-                [18, 3]
+              [0, 0.1],
+              [18, 3]
               ],
               base: 5
-            },
+          },
             "circle-radius": { // Set the radius of each circle, as well as its size at each zoom level: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-radius
               stops: [
-                [12, 5],
-                [22, 180]
+              [12, 5],
+              [22, 180]
               ],
               base: 5
-            },
+          },
             "circle-color": [ // Specify the color each circle should be
               'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
               ['get', 'STORE_TYPE'], // Use the result 'STORE_TYPE' property
@@ -106,11 +105,11 @@
               'Supermarket', '#008000',
               'Warehouse Club Store', '#008000',
               '#FF0000' // any other store type
-            ]
+              ]
           }
-        });
+      });
     }); 
-  </script>
+</script>
 
 </body>
 
