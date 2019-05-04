@@ -58,13 +58,13 @@
             var limit = 50; // The maximum amount of results to return
             marker.setLngLat(point).addTo(map); // Add the marker to the map at the result coordinates
             var query = 'https://api.mapbox.com/v4/' + tileset + '/tilequery/' + point[0] + ',' + point[1] + '.json?radius=' + radius + '&limit= ' + limit + ' &access_token=' + mapboxgl.accessToken;
+            $.ajax({
+                method: 'GET',
+                url: query,
+                }).done(function(data) {
+                console.log(data);
+                // Code from the next step will go here
             }); 
-        $.ajax({
-            method: 'GET',
-            url: query,
-            }).done(function(data) {
-            console.log(data);
-            // Code from the next step will go here
         }); 
   </script>
 
