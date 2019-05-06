@@ -119,13 +119,13 @@
 
                 var title = '<h3>' + e.features[0].properties['Property Name'] + '</h3>'; // Set the store name
                 var type = '<h4>' + e.features[0].properties['Property Type'] + '</h4>'; // Set the store type
-                var address = '<p>' + e.features[0].properties['Address'] + '<br> Chicago, IL' + e.features[0].properties['Zip Code'] + '</p>'; // Set the store address
+                var address = '<p>' + e.features[0].properties.address + '<br> Chicago, IL' + e.features[0].properties['Zip Code'] + '</p>'; // Set the store address
 
                 var obj = JSON.parse(e.features[0].properties.tilequery); // Get the feature's tilequery object (https://docs.mapbox.com/api/maps/#response-retrieve-features-from-vector-tiles)
                 var distance = '<p>' + (obj.distance / 1609.344).toFixed(2) + ' mi. from location' + '</p>'; // Take the distance property, convert it to miles, and truncate it at 2 decimal places
 
-                var lon = e.features[0].properties.longitude;
-                var lat = e.features[0].properties.latitude;
+                var lon = e.features[0].properties.Longitude;
+                var lat = e.features[0].properties.Latitude;
                 var coordinates = new mapboxgl.LngLat(lon, lat); // Create a new LngLat object (https://docs.mapbox.com/mapbox-gl-js/api/#lnglatlike)
                 var content = title + type + address + distance; // All the HTML elements
 
