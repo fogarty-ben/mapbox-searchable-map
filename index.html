@@ -117,9 +117,11 @@
             map.on('mouseenter', 'tilequery-points', function(e) {
                 map.getCanvas().style.cursor = 'pointer'; // When the cursor enters a feature, set it to a pointer
 
-                var title = '<h3>' + e.features[0].properties['Property Name'] + '</h3>'; // Set the store name
-                var type = '<h4>' + e.features[0].properties['Property Type'] + '</h4>'; // Set the store type
-                var address = '<p>' + e.features[0].properties.address + '<br> Chicago, IL' + e.features[0].properties['Zip Code'] + '</p>'; // Set the store address
+                var title = '<h3>' + e.features[0].properties['Property Name'] + '</h3>';
+                var mgmt = '<h4>' + e.features[0].properties['Management Company'] + '</h4>';
+                var type = '<h5>' + e.features[0].properties['Property Type'] + '</h5>';
+                var nUnits = '<p> Total units: ' + e.features[0].properties.Units + '</p>';
+                var address = '<p>' + e.features[0].properties.Address + '<br> Chicago, IL ' + e.features[0].properties['Zip Code'] + '</p>';
 
                 var obj = JSON.parse(e.features[0].properties.tilequery); // Get the feature's tilequery object (https://docs.mapbox.com/api/maps/#response-retrieve-features-from-vector-tiles)
                 var distance = '<p>' + (obj.distance / 1609.344).toFixed(2) + ' mi. from location' + '</p>'; // Take the distance property, convert it to miles, and truncate it at 2 decimal places
@@ -127,7 +129,7 @@
                 var lon = e.features[0].properties.Longitude;
                 var lat = e.features[0].properties.Latitude;
                 var coordinates = new mapboxgl.LngLat(lon, lat); // Create a new LngLat object (https://docs.mapbox.com/mapbox-gl-js/api/#lnglatlike)
-                var content = title + type + address + distance; // All the HTML elements
+                var content = title + mgmt + type + nUnits + address + distance; // All the HTML elements
 
                 popup.setLngLat(coordinates) // Set the popup at the given coordinates
                     .setHTML(content) // Set the popup contents equal to the HTML elements you created
