@@ -3,7 +3,7 @@
 
 <head>
     <meta charset='utf-8' />
-    <title>fogarty-ben | Denver Healthy food finder</title>
+    <title>Chicago Affordable Housing Finder | fogarty-ben.github.io</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <!-- Import Mapbox GL JS -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
@@ -46,7 +46,7 @@
                 accessToken: mapboxgl.accessToken, // Set the access token
                 mapboxgl: mapboxgl, // Set the mapbox-gl instance
                 zoom: 13, // Set the zoom level for geocoding results
-                placeholder: "Enter an address or place name", // This placeholder text will display in the search bar
+                placeholder: "Find affordable housing near...", // This placeholder text will display in the search bar
                 bbox: [-87.959, 41.630, -87.465, 42.042] // Set a bounding box
             });
             // Add the geocoder to the map
@@ -119,7 +119,7 @@
 
                 var title = '<h3>' + e.features[0].properties['Property Name'] + '</h3>';
                 var mgmt = '<h4>' + e.features[0].properties['Management Company'] + '</h4>';
-                var type = '<h5>' + e.features[0].properties['Property Type'] + '</h5>';
+                var type = '<p>' + e.features[0].properties['Property Type'] + '</p>';
                 var nUnits = '<p> Total units: ' + e.features[0].properties.Units + '</p>';
                 var address = '<p>' + e.features[0].properties.Address + '<br> Chicago, IL ' + e.features[0].properties['Zip Code'] + '</p>';
 
